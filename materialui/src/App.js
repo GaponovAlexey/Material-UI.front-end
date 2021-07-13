@@ -1,26 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 import {
   AppBar, Container, Toolbar, Dialog,
   IconButton, Typography, Box, Paper,
   Grid, Card, CardMedia, CardContent,
   CardActions, BottomNavigation, BottomNavigationAction,
-  DialogTitle, DialogContent, DialogContentText, 
+  DialogTitle, DialogContent, DialogContentText,
   TextField, DialogActions,
-
 } from '@material-ui/core';
-
-
-//import BottonNavigationIcon from '@material-ui/icons/BottonNavigation';
-//import BottonNavigationIconAction from '@material-ui/icons/BottonNavigationIconAction';
 
 import FolderIcon from '@material-ui/icons/Folder';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationIcon from '@material-ui/icons/LocationOn';
-
-
 import MenuIcon from '@material-ui/icons/Menu';
 import LayerIcon from '@material-ui/icons/Layers';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
@@ -123,13 +115,10 @@ const App = () => {
                   />
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose} color='primary'>Cancel</Button>
-                  <Button onClick={handleClose} color='primary'>log in</Button>
+                  <Button onClick={ handleClose } color='primary'>Cancel</Button>
+                  <Button onClick={ handleClose } color='primary'>log in</Button>
                 </DialogActions>
               </Dialog>
-
-
-
             </Box>
             <Button color='secondary' variant='contained'>Sing Up</Button>
           </Toolbar>
