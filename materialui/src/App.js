@@ -1,11 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
-//import classes from './One.module.css';
 import {
-  AppBar, Container, Toolbar,
-  IconButton, Typography, Box, Paper, Grid, Card, CardMedia, CardContent, CardActions
+  AppBar, Container, Toolbar, Dialog,
+  IconButton, Typography, Box, Paper,
+  Grid, Card, CardMedia, CardContent,
+  CardActions, BottomNavigation, BottomNavigationAction,
+  DialogTitle, DialogContent, DialogContentText, 
+  TextField, DialogActions,
+
 } from '@material-ui/core';
+
+
+//import BottonNavigationIcon from '@material-ui/icons/BottonNavigation';
+//import BottonNavigationIconAction from '@material-ui/icons/BottonNavigationIconAction';
+
+import FolderIcon from '@material-ui/icons/Folder';
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationIcon from '@material-ui/icons/LocationOn';
+
+
 import MenuIcon from '@material-ui/icons/Menu';
 import LayerIcon from '@material-ui/icons/Layers';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
@@ -54,10 +69,26 @@ const useStayles = makeStyles((theme) => ({
   }
 }))
 
-const cards = [1,2,3,4,5,6,7,8,9];
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const One = () => {
+const App = () => {
   const classes = useStayles();
+
+  const [value, setValue] = React.useState('recents')
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   return (
     <>
       <AppBar position='fixed'>
@@ -69,7 +100,36 @@ const One = () => {
             </IconButton>
             <Typography variant='h6' className={ classes.title }> My Mens Blog</Typography>
             <Box mr={ 3 }>
-              <Button color='inherit' variant='outlined'>log In</Button>
+              <Button color='inherit' variant='outlined' onClick={ handleClickOpen } >log In</Button>
+              <Dialog open={ open } onClose={ handleClose } area-labelledby='form-dialog-title' >
+                <DialogTitle id='form-dialog-title'>log in</DialogTitle>
+                <DialogContent>
+                  <DialogContentText> Log in to see videos</DialogContentText>
+                  <TextField
+                    autoFocis
+                    margin='dense'
+                    id='name'
+                    label='Email Adress'
+                    type='email'
+                    fullWidth
+                  />
+                  <TextField
+                    autoFocis
+                    margin='dense'
+                    id='pass'
+                    label='Password'
+                    type='password'
+                    fullWidth
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color='primary'>Cancel</Button>
+                  <Button onClick={handleClose} color='primary'>log in</Button>
+                </DialogActions>
+              </Dialog>
+
+
+
             </Box>
             <Button color='secondary' variant='contained'>Sing Up</Button>
           </Toolbar>
@@ -82,7 +142,6 @@ const One = () => {
             <div className={ classes.overlay } />
             <Grid container>
               <Grid item md={ 6 }>
-
                 <div className={ classes.mainFeaturesPostConteiner }>
                   <Typography
                     component='h1'
@@ -124,44 +183,75 @@ const One = () => {
             </div>
           </Container>
         </div>
-<Container className={classes.cardGrid} maxWidth='md'>
-    <Grid container spacing={4}>
-      {cards.map((card ) =>(
-        <Grid item key={card} xs={12} sm={6} md={4}>
-          <Card className={classes.card}>
-            <CardMedia className={classes.CardMedia} 
-              image='https://source.unsplash.com/random'
-              title='image tittle'
-            />
-            <CardContent className={classes.CardContent}>
-              <Typography variant='h5' gutterBottom>
-                Blog Post
-              </Typography>
-              <Typography >
-                Then, once you've whet your appetite, there's a free, fully functional, GNU-licensed version available for download. Alternatively, if you want to avoid the hassle of setting it up on your own server, you can donate $20
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size='small' color="primary">
-                View
-              </Button>
-              <Button size='small' color="primary">
-                Edit
-              </Button>
-              <LayerIcon/>
-              <PlayCircleFilledIcon />
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-</Container>
+        <Container className={ classes.cardGrid } maxWidth='md'>
+          <Grid container spacing={ 4 }>
+            { cards.map((card) => (
+              <Grid item key={ card } xs={ 12 } sm={ 6 } md={ 4 }>
+                <Card className={ classes.card }>
+                  <CardMedia className={ classes.CardMedia }
+                    image='https://source.unsplash.com/random'
+                    title='image tittle'
+                  />
+                  <CardContent className={ classes.CardContent }>
+                    <Typography variant='h5' gutterBottom>
+                      Blog Post
+                    </Typography>
+                    <Typography >
+                      Then, once you've whet your appetite, there's a free, fully functional, GNU-licensed version available for download. Alternatively, if you want to avoid the hassle of setting it up on your own server, you can donate $20
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size='small' color="primary">
+                      View
+                    </Button>
+                    <Button size='small' color="primary">
+                      Edit
+                    </Button>
+                    <LayerIcon />
+                    <PlayCircleFilledIcon />
+                  </CardActions>
+                </Card>
+              </Grid>
+            )) }
+          </Grid>
+        </Container>
       </main>
+      <footer>
+        <Typography variant='h6' align='center' gutterBottom >Footer</Typography>
+        <BottomNavigation
+          value={ value }
+          onChange={ handleChange }
+          className={ classes.root }
+        >
+          <BottomNavigationAction
+            label='Recents'
+            value='recents'
+            icon={ <RestoreIcon /> }
+          />
+          <BottomNavigationAction
+            label='Favirite'
+            value='favirite'
+            icon={ <FavoriteIcon /> }
+          />
+          <BottomNavigationAction
+            label='Nearby'
+            value='nearby'
+            icon={ <LocationIcon /> }
+          />
+          <BottomNavigationAction
+            label='Folder'
+            value='folder'
+            icon={ <FolderIcon /> }
+          />
+        </BottomNavigation>
+        <Typography align='center' color='textSecondary' componets='p' variant='subtitle1'>
+          Web Deweloper Blog React js Material Ui site
+        </Typography>
 
-
+      </footer>
     </>
   )
 }
 
 
-export default One;
+export default App;
