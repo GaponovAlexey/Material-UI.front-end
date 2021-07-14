@@ -87,32 +87,18 @@ const App = () => {
         <Container fixed>
           <Toolbar>
             <IconButton edge='start'
-              color='inherit' aria-laabel='menu' className={ classes.menuButton }>
+              color='inherit' aria-label='menu' className={ classes.menuButton }>
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' className={ classes.title }> My Mens Blog</Typography>
-            <Box mr={ 3 }>
-              <Button color='inherit' variant='outlined' onClick={ handleClickOpen } >log In</Button>
+            <Box mr={ 1 }>
+              <Button ton color='inherit' variant='outlined' onClick={ handleClickOpen } >log In</Button>
               <Dialog open={ open } onClose={ handleClose } area-labelledby='form-dialog-title' >
-                <DialogTitle id='form-dialog-title'>log in</DialogTitle>
+                <DialogTitle id='form-dialog-title'>logssadaw in</DialogTitle>
                 <DialogContent>
                   <DialogContentText> Log in to see videos</DialogContentText>
-                  <TextField
-                    autoFocis
-                    margin='dense'
-                    id='name'
-                    label='Email Adress'
-                    type='email'
-                    fullWidth
-                  />
-                  <TextField
-                    autoFocis
-                    margin='dense'
-                    id='pass'
-                    label='Password'
-                    type='password'
-                    fullWidth
-                  />
+                  <TextField autoFocis margin='dense' id='name' label='Email Adress' type='email' fullWidth />
+                  <TextField autoFocis margin='dense' id='pass' label='Password' type='password' fullWidth />
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={ handleClose } color='primary'>Cancel</Button>
@@ -166,7 +152,7 @@ const App = () => {
                   <Button variant='contained' color='primary' >Start Now</Button>
                 </Grid>
                 <Grid item>
-                  <Button variant='outlined' color='primary' >leatn mo</Button>
+                  <Button variant='outlined' color='primary' >learn mo</Button>
                 </Grid>
               </Grid>
             </div>
